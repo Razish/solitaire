@@ -250,7 +250,7 @@ void Game_Initialise( void )
 	for ( i=0; i<CARD_NUM_CARDS; i++ )
 	{//Initialise each card
 		cards[i].type = i;
-		cards[i].textureID = R_LoadTexture( va( "textures/cards/%s.png", strlwr( cardNames[i].name+5 ) /* strip CARD_ */ ) );
+		cards[i].textureID = R_LoadTexture( va( "textures/cards/%s.png", Nx_strlwr( cardNames[i].name+5 ) /* strip CARD_ */ ) );
 		if ( !strncmp( cardNames[i].name+5, "spades", 6 ) )		cards[i].suit = SUIT_SPADES;
 		if ( !strncmp( cardNames[i].name+5, "hearts", 6 ) )		cards[i].suit = SUIT_HEARTS;
 		if ( !strncmp( cardNames[i].name+5, "diamonds", 8 ) )	cards[i].suit = SUIT_DIAMONDS;

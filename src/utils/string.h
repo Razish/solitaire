@@ -14,5 +14,5 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #pragma once
 
 char *va( char *format, ... );
-char *strlwr( char *str );
+char *Nx_strlwr( char *str );
 

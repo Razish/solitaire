@@ -151,6 +151,7 @@ void R_DrawQuadExplicit( float x, float y, float width, float height, float s, f
 
 #define R_DrawFullscreenQuad() R_DrawQuad( 0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT )
 
+#if 0
 #ifndef GL_SELECTMACRO
 	void GL_SelectTexture( int texUnit )
 	{
@@ -176,6 +177,7 @@ void R_DrawQuadExplicit( float x, float y, float width, float height, float s, f
 		return;
 	}
 #endif //GL_SELECTMACRO
+#endif //0
 
 static bool SetupSDL( void )
 {

@@ -38,7 +38,7 @@ int main( int argc, char *argv[] )
 	}
 	printf( "Path is %s\n\n", common.path );
 
-	srand( time( NULL ) );
+	srand( (unsigned int)time( NULL ) );
 
 	R_Initialise();
 	Game_Initialise();

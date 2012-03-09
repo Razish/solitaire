@@ -27,7 +27,7 @@ char *va( char *format, ... )
 	return buf;
 }
 
-char *strlwr( char *str )
+char *Nx_strlwr( char *str )
 {
 	static char string[2][32000] = { { 0 } };
 	static int idx = 0;
