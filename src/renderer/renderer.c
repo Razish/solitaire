@@ -217,8 +217,8 @@ static bool SetupSDL( void )
 
 static void SetupGL( void )
 {
-	glClearColor( 0.1f, 0.14f, 0.1f, 0.0f );
-	//glClearColor( 0.15f, 0.35f, 0.15f, 0.0f );
+	//glClearColor( 0.1f, 0.14f, 0.1f, 0.0f );
+	glClearColor( 0.15f, 0.35f, 0.15f, 0.0f );
 
 	//Alpha blending
 	glEnable( GL_BLEND );

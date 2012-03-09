@@ -101,6 +101,7 @@ typedef struct cardStack_s {
 
 typedef struct game_s {
 	bool showAllCards;
+	bool wasteView;
 } game_t;
 extern game_t game;
 

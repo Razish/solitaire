@@ -47,6 +47,9 @@ void Input_Poll( void )
 			else if ( inputEvent.key.keysym.sym == SDLK_f )
 				game.showAllCards = !game.showAllCards;
 
+			else if ( inputEvent.key.keysym.sym == SDLK_g )
+				game.wasteView = !game.wasteView;
+
 			else if ( inputEvent.key.keysym.sym == SDLK_r )
 			{
 				Game_Shutdown();

@@ -363,49 +363,53 @@ void Game_Render( void )
 
 	//Waste piles
 	R_ResetColor();
-#if 0
-	current = waste[0];
-	if ( current )
-	{
-		x = WASTE_X( 0 );
-		y = WASTE_Y;
 
-		while ( current )
-		{
-			if ( current == selectedStack )
-				R_SetColor( 1.0f, 0.878f, 0.5f, 1.0f );
-			R_DrawRect( current->data->textureID, x, y, CARD_WIDTH, CARD_HEIGHT, 0.0f, 0.0f, 1.0f, 1.0f );
-			y += TABLEAU_Y_OFFSET;
-			current = current->next;
-		}
-	}
-	else
-		R_DrawRect( foundationTexture, WASTE_X( 0 ), WASTE_Y, CARD_WIDTH, CARD_HEIGHT, 0.0f, 0.0f, 1.0f, 1.0f );
-	
-	current = waste[1];
-	if ( current )
+	if ( game.wasteView )
 	{
-		x = WASTE_X( 1 );
-		y = WASTE_Y;
-
-		while ( current )
+		current = waste[0];
+		if ( current )
 		{
-			if ( current == selectedStack )
-				R_SetColor( 1.0f, 0.878f, 0.5f, 1.0f );
-			R_DrawRect( current->data->textureID, x, y, CARD_WIDTH, CARD_HEIGHT, 0.0f, 0.0f, 1.0f, 1.0f );
-			y += TABLEAU_Y_OFFSET;
-			current = current->next;
+			x = WASTE_X( 0 );
+			y = WASTE_Y;
+
+			while ( current )
+			{
+				if ( current == selectedStack )
+					R_SetColor( 1.0f, 0.878f, 0.5f, 1.0f );
+				R_DrawRect( current->data->textureID, x, y, CARD_WIDTH, CARD_HEIGHT, 0.0f, 0.0f, 1.0f, 1.0f );
+				y += TABLEAU_Y_OFFSET;
+				current = current->next;
+			}
 		}
+		else
+			R_DrawRect( foundationTexture, WASTE_X( 0 ), WASTE_Y, CARD_WIDTH, CARD_HEIGHT, 0.0f, 0.0f, 1.0f, 1.0f );
+
+		current = waste[1];
+		if ( current )
+		{
+			x = WASTE_X( 1 );
+			y = WASTE_Y;
+
+			while ( current )
+			{
+				if ( current == selectedStack )
+					R_SetColor( 1.0f, 0.878f, 0.5f, 1.0f );
+				R_DrawRect( current->data->textureID, x, y, CARD_WIDTH, CARD_HEIGHT, 0.0f, 0.0f, 1.0f, 1.0f );
+				y += TABLEAU_Y_OFFSET;
+				current = current->next;
+			}
+		}
+		else
+			R_DrawRect( foundationTexture, WASTE_X( 1 ), WASTE_Y, CARD_WIDTH, CARD_HEIGHT, 0.0f, 0.0f, 1.0f, 1.0f );
+
+		return;
 	}
-	else
-		R_DrawRect( foundationTexture, WASTE_X( 1 ), WASTE_Y, CARD_WIDTH, CARD_HEIGHT, 0.0f, 0.0f, 1.0f, 1.0f );
-#else
+
 	R_DrawRect( waste[0] ? faceDownTexture : foundationTexture, WASTE_X( 0 ), WASTE_Y, CARD_WIDTH, CARD_HEIGHT, 0.0f, 0.0f, 1.0f, 1.0f );
 	current = CardStackGetTop( waste[1] );
 	if ( current && current == selectedStack )
 		R_SetColor( 1.0f, 0.878f, 0.5f, 1.0f );
 	R_DrawRect( current ? current->data->textureID : foundationTexture, WASTE_X( 1 ), WASTE_Y, CARD_WIDTH, CARD_HEIGHT, 0.0f, 0.0f, 1.0f, 1.0f );
-#endif
 
 	//Tableau piles
 	for ( i=0; i<NUM_TABLEAU_PILES; i++ )
@@ -618,6 +622,12 @@ found2:
 								selectedStack->prev = NULL;
 								goto found3;
 							}
+						}
+						if ( waste[1] == selectedStack )
+						{
+							waste[1] = NULL;
+							selectedStack->prev = NULL;
+							goto found3;
 						}
 					}
 found3:
