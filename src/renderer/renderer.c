@@ -200,7 +200,7 @@ static bool SetupSDL( void )
 
 	//V-sync + Double buffering (Or not!)
 //	SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
-	SDL_GL_SetAttribute( SDL_GL_SWAP_CONTROL, 0 );
+	SDL_GL_SetAttribute( SDL_GL_SWAP_CONTROL, 1 );
 
 	//FSAA
 //	SDL_GL_SetAttribute( SDL_GL_MULTISAMPLEBUFFERS, 4 );

@@ -485,7 +485,7 @@ void Game_HandleEvents( int mousePos[], byte mouseState )
 						selectedStack->prev = NULL;
 					}
 					else
-					{//The card we're moving was also a tableau/foundation root
+					{//The card we're moving was also a tableau/foundation/waste root
 						for ( j=0; j<NUM_TABLEAU_PILES; j++ )
 						{
 							if ( tableau[j] == selectedStack && j != i )
@@ -504,6 +504,8 @@ void Game_HandleEvents( int mousePos[], byte mouseState )
 								break;
 							}
 						}
+						if ( waste[1] == selectedStack )
+							return;
 					}
 //found1:
 					selectedStack = NULL;
@@ -604,7 +606,7 @@ found2:
 						selectedStack->prev = NULL;
 					}
 					else
-					{//The card we're moving was also a tableau/foundation root
+					{//The card we're moving was also a tableau/foundation/waste root
 						for ( j=0; j<NUM_TABLEAU_PILES; j++ )
 						{
 							if ( tableau[j] == selectedStack )
@@ -680,6 +682,12 @@ found3:
 										selectedStack->prev = card;
 										goto found4;
 									}
+								}
+								if ( waste[1] == selectedStack )
+								{
+									waste[1] = NULL;
+									selectedStack->prev = card;
+									goto found4;
 								}
 							}
 found4:
