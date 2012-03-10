@@ -505,7 +505,11 @@ void Game_HandleEvents( int mousePos[], byte mouseState )
 							}
 						}
 						if ( waste[1] == selectedStack )
-							return;
+						{
+							waste[1] = NULL;
+							selectedStack->prev = NULL;
+							break;
+						}
 					}
 //found1:
 					selectedStack = NULL;
